@@ -1,0 +1,30 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages(c("tidyverse","rtweet","hrbrthemes","viridis"))
+source("functions.r")
+```
+
+Use follower_plot_auto() to automatically generate a follower plot for the specified user.
+Note: The Twitter API allows for user data to be extracted for up to 70,000 users before reaching the rate limit. 
+      Running this function on accounts with greater than 70,000 users will return a plot with the 70k most recent followers.
+
+follower_plot_auto("screen_name")
+
+```{r fig.height=8, fig.width=8}
+follower_plot_auto("likingonline")
+```
+
+Use follower_data() to return the dataframe used to produce the follower plot.
+
+```{r}
+likingonline<-follower_data("likingonline")
+```
+Use follower_plot() to plot the data returned from the follower_data() function.
+
+```{r fig.height=8, fig.width=8}
+follower_plot(likingonline, title = "@likingonline follower plot")
+```
